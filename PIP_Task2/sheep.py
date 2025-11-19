@@ -7,7 +7,7 @@ class sheep:
 
     def __init__(self):
         self.speed = 0.5
-        self.place = [random.randint(-10, 10), random.randint(-10, 10)]
+        self.place = [random.uniform(-10, 10), random.uniform(-10, 10)]
 
     def move(self):
         direction = random.randint(0,3)
@@ -23,6 +23,6 @@ class sheep:
                 self.place[0] += self.speed
 
     def get_place(self):
-        return f"Place is {self.place}"
+        return f"sheep is at {self.place}"
 
 

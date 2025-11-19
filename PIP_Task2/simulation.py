@@ -1,11 +1,20 @@
-import random
 from time import sleep
 
+from wolf import wolf
 from sheep import sheep
 
-sh = sheep()
+num_of_sheeps = 2
+
+wolf = wolf()
+sheeps = []
+for i in range(num_of_sheeps):
+    sheeps.append(sheep())
 
 while(True):
-    print(sh.get_place())
-    sh.move()
-    sleep(1)
+    for i in range(num_of_sheeps):
+        sheeps[i].move()
+        print(sheeps[i].get_place())
+
+        wolf.move(sheeps)
+        print(wolf.get_place())
+        sleep(1)
