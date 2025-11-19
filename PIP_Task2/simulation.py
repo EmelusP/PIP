@@ -12,9 +12,13 @@ for i in range(num_of_sheeps):
 
 while(True):
     for i in range(num_of_sheeps):
-        sheeps[i].move()
-        print(sheeps[i].get_place())
+        if sheeps[i] != None:
+            sheeps[i].move()
+            print(sheeps[i].get_place())
 
-        wolf.move(sheeps)
-        print(wolf.get_place())
-        sleep(1)
+    if wolf.move(sheeps) == 0:
+        print("Wszystkie owce zostały zjedzone!!!!!!!!!!!!!!!!!!")
+        break
+
+    print(wolf.get_place())
+    sleep(1)

@@ -1,6 +1,5 @@
-from turtledemo.penrose import inflatedart
+import math
 
-from sheep import sheep
 
 class wolf:
     place = [0, 0]
@@ -11,19 +10,35 @@ class wolf:
         self.speed = 1
 
     def move(self, sheeps):
-        closest = float("inf")
-        closest_sheep = 0
+        closest_dist = float("inf")
+        closest_sheep = -1
+
         for i in range(len(sheeps)):
+            if sheeps[i] == None:
+                continue
+            else:
+                dx = self.place[0] - sheeps[i].place[0]
+                dy = self.place[1] - sheeps[i].place[1]
 
-            distance = (self.place[0] - sheeps[i].place[0]) + (self.place[1] - sheeps[i].place[1])
-            if distance > closest:
-                closest_sheep = i
+                distance = math.sqrt(dx ** 2 + dy ** 2)
+                if distance < closest_dist:
+                    closest_dist = distance
+                    closest_sheep = i
 
-        x_diff = self.place[0] - sheeps[closest_sheep].place[0]
-        y_diff = self.place[1] - sheeps[closest_sheep].place[1]
+        if closest_sheep == -1:
+            return 0
 
-        self.place[0] += 1 * (y_diff / x_diff)
-        self.place[1] += 1 * (x_diff / y_diff)
+        dir_x = sheeps[closest_sheep].place[0] - self.place[0]
+        dir_y = sheeps[closest_sheep].place[1] - self.place[1]
+
+        if (closest_dist < 1):
+            self.place = sheeps[closest_sheep].place
+            sheeps[closest_sheep] = None
+
+        elif closest_dist > 0:
+            self.place[0] += dir_x / closest_dist * self.speed
+            self.place[1] += dir_y / closest_dist * self.speed
+
 
     def get_place(self):
-        return f"Wolf is at {self.place}"
+        return f"Wolf is heeeereeee!!! {self.place} "

@@ -10,7 +10,7 @@ class sheep:
         self.place = [random.uniform(-10, 10), random.uniform(-10, 10)]
 
     def move(self):
-        direction = random.randint(0,3)
+        direction = random.randint(0, 3)
 
         match direction:
             case 0:
