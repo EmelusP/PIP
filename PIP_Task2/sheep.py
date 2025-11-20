@@ -1,7 +1,7 @@
 import random
 
 
-class sheep:
+class Sheep:
     place = [0, 0]
     speed = 0
 
@@ -24,5 +24,3 @@ class sheep:
 
     def get_place(self):
         return f"sheep is at {self.place}"
-
-

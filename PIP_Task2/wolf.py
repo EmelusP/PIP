@@ -1,7 +1,7 @@
 import math
 
 
-class wolf:
+class Wolf:
     place = [0, 0]
     speed = 1
 
@@ -14,7 +14,7 @@ class wolf:
         closest_sheep = -1
 
         for i in range(len(sheeps)):
-            if sheeps[i] == None:
+            if sheeps[i] is None:
                 continue
             else:
                 dx = self.place[0] - sheeps[i].place[0]
@@ -26,7 +26,7 @@ class wolf:
                     closest_sheep = i
 
         if closest_sheep == -1:
-            return 0
+            return -1
 
         dir_x = sheeps[closest_sheep].place[0] - self.place[0]
         dir_y = sheeps[closest_sheep].place[1] - self.place[1]
@@ -34,11 +34,13 @@ class wolf:
         if (closest_dist < 1):
             self.place = sheeps[closest_sheep].place
             sheeps[closest_sheep] = None
+            return closest_sheep + 0.1
 
         elif closest_dist > 0:
             self.place[0] += dir_x / closest_dist * self.speed
             self.place[1] += dir_y / closest_dist * self.speed
 
+        return closest_sheep
 
     def get_place(self):
-        return f"Wolf is heeeereeee!!! {self.place} "
+        return f"Wolf is at {round(self.place[0], 3)}, {round(self.place[1], 3)}"
