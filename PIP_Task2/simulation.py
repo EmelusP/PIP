@@ -27,7 +27,6 @@ for j in range(max_num_of_rounds):
     ch_sheep = wolf.move(sheeps)
 
 
-#INfo
     print(f"Round number: {j}")
     print(wolf.get_place())
     print(f"Number of allive sheeps: {num_sheeps_allive(sheeps)}")
@@ -36,6 +35,11 @@ for j in range(max_num_of_rounds):
     elif ch_sheep % 1 != 0:
         print(f"Wolf is chasing sheep nr: {int(ch_sheep)} ")
         print(f"Wolf has eaten sheep nr: {int(ch_sheep)}")
-
+        if num_sheeps_allive(sheeps) == 0:
+            print(f"Wolf has eaten all the sheeps!!\n End of the simulation")
+            break
+    else:
+        print(f"Wolf is chasing sheep nr: {int(ch_sheep)} ")
+    print(".\n.\n")
 
     sleep(1)
