@@ -34,56 +34,60 @@ def save_to_csv(data_list):
         writer.writerows(data_list)
 
 
-def num_sheeps_allive(sheeps):
-    sum_of_allive_sheeps = 0
+def num_sheeps_alive(sheeps):
+    sum_of_alive_sheeps = 0
     for i in range(len(sheeps)):
         if sheeps[i] is not None:
-            sum_of_allive_sheeps += 1
-    return sum_of_allive_sheeps
+            sum_of_alive_sheeps += 1
+    return sum_of_alive_sheeps
 
 
-num_of_sheeps = 2
-max_num_of_rounds = 50
+def run_simulation():
+    num_of_sheeps = 2
+    max_num_of_rounds = 50
 
-wolf = Wolf()
-sheeps = []
-json_data = []
-csv_data = []
+    wolf = Wolf()
+    sheeps = []
+    json_data = []
+    csv_data = []
 
-for i in range(num_of_sheeps):
-    sheeps.append(Sheep())
-
-for j in range(max_num_of_rounds):
     for i in range(num_of_sheeps):
-        if sheeps[i] is not None:
-            sheeps[i].move()
+        sheeps.append(Sheep())
 
-    ch_sheep = wolf.move(sheeps)
+    for j in range(max_num_of_rounds):
+        for i in range(num_of_sheeps):
+            if sheeps[i] is not None:
+                sheeps[i].move()
 
-    round_data = collect_round_data(j + 1, wolf, sheeps)
-    json_data.append(round_data)
+        ch_sheep = wolf.move(sheeps)
 
-    csv_data.append([j + 1, num_sheeps_allive(sheeps)])
+        round_data = collect_round_data(j + 1, wolf, sheeps)
+        json_data.append(round_data)
 
-    print(f"Round number: {j + 1}")
-    print(wolf.get_place())
-    print(f"Number of allive sheeps: {num_sheeps_allive(sheeps)}")
-    if ch_sheep == -1:
-        print("The wolf has eaten last sheep!")
-    elif ch_sheep % 1 != 0:
-        print(f"Wolf is chasing sheep nr: {int(ch_sheep)} ")
-        print(f"Wolf has eaten sheep nr: {int(ch_sheep)}")
-        if num_sheeps_allive(sheeps) == 0:
-            print(f"Wolf has eaten all the sheeps!!\n End of the simulation")
-            break
-    else:
-        print(f"Wolf is chasing sheep nr: {int(ch_sheep)} ")
-    print(".\n.\n")
+        csv_data.append([j + 1, num_sheeps_alive(sheeps)])
 
-    sleep(1)
+        print(f"Round number: {j + 1}")
+        print(wolf.get_place())
+        print(f"Number of alive sheeps: {num_sheeps_alive(sheeps)}")
+        if ch_sheep == -1:
+            print("The wolf has eaten last sheep!")
+        elif ch_sheep % 1 != 0:
+            print(f"Wolf is chasing sheep nr: {int(ch_sheep)} ")
+            print(f"Wolf has eaten sheep nr: {int(ch_sheep)}")
+            if num_sheeps_alive(sheeps) == 0:
+                print(f"The wolf has eaten all the sheep!!\n  End of the simulation")
+                break
+        else:
+            print(f"The Wolf is chasing sheep nr: {int(ch_sheep)} ")
+        print(".\n.\n")
 
-save_to_json(json_data)
-print("Zapisano położenia zwierząt do pliku pos.json.")
+        #sleep(5)
 
-save_to_csv(csv_data)
-print("Zapisano liczbę żywych owiec do pliku alive.csv.")
+    save_to_json(json_data)
+    print("Animal positions have been saved to pos.json.")
+
+    save_to_csv(csv_data)
+    print("The number of alive sheep has been saved to alive.csv.")
+
+
+run_simulation()

@@ -2,8 +2,6 @@ import random
 
 
 class Sheep:
-    place = [0, 0]
-    speed = 0
 
     def __init__(self):
         self.speed = 0.5

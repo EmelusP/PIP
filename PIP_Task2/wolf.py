@@ -2,8 +2,6 @@ import math
 
 
 class Wolf:
-    place = [0, 0]
-    speed = 1
 
     def __init__(self):
         self.place = [0, 0]
@@ -31,7 +29,7 @@ class Wolf:
         dir_x = sheeps[closest_sheep].place[0] - self.place[0]
         dir_y = sheeps[closest_sheep].place[1] - self.place[1]
 
-        if (closest_dist < 1):
+        if (closest_dist <= 1):
             self.place = sheeps[closest_sheep].place
             sheeps[closest_sheep] = None
             return closest_sheep + 0.1
