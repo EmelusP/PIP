@@ -42,3 +42,6 @@ class Wolf:
 
     def get_place(self):
         return f"Wolf is at {round(self.place[0], 3)}, {round(self.place[1], 3)}"
+    #def __str__(self):
+    #    pass
+    #str(wolf)

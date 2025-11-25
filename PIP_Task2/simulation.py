@@ -42,10 +42,11 @@ def num_sheeps_alive(sheeps):
         if sheeps[i] is not None:
             sum_of_alive_sheeps += 1
     return sum_of_alive_sheeps
+#return sum(1 for sheep in sheeps if sheep is not None)
 
 
 def run_simulation():
-    num_of_sheeps = 2
+    num_of_sheeps = 15
     max_num_of_rounds = 50
 
     wolf = Wolf()
