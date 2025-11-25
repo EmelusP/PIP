@@ -26,12 +26,14 @@ def collect_round_data(round_no, wolf, sheeps):
 def save_to_json(data_list):
     with open("pos.json", 'w') as file:
         json.dump(data_list, file, indent=4)
+    print("Animal positions have been saved to pos.json.")
 
 
 def save_to_csv(data_list):
     with open("alive.csv", 'w', newline='') as file:
         writer = csv.writer(file)
         writer.writerows(data_list)
+    print("The number of alive sheep has been saved to alive.csv.")
 
 
 def num_sheeps_alive(sheeps):
@@ -84,10 +86,7 @@ def run_simulation():
         #sleep(5)
 
     save_to_json(json_data)
-    print("Animal positions have been saved to pos.json.")
-
     save_to_csv(csv_data)
-    print("The number of alive sheep has been saved to alive.csv.")
 
 
 run_simulation()
