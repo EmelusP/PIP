@@ -52,7 +52,7 @@ def run_simulation():
         sheeps.append(Sheep())
 
     for j in range(max_num_of_rounds):
-        for i, sheep in enumerate(sheeps):
+        for sheep in sheeps:
             if sheep is not None:
                 sheep.move()
 
