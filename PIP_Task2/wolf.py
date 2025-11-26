@@ -28,22 +28,19 @@ class Wolf:
 
         closest_dist_sqrt = math.sqrt(closest_dist)
 
-        dir_x = sheeps[closest_sheep].place[0] - self.place[0]
-        dir_y = sheeps[closest_sheep].place[1] - self.place[1]
-
         if (closest_dist_sqrt <= self.speed):
             self.place = sheeps[closest_sheep].place
             sheeps[closest_sheep] = None
             return closest_sheep, True
 
-        elif closest_dist > 0:
-            self.place[0] += dir_x / closest_dist * self.speed
-            self.place[1] += dir_y / closest_dist * self.speed
+        else:
+            dir_x = sheeps[closest_sheep].place[0] - self.place[0]
+            dir_y = sheeps[closest_sheep].place[1] - self.place[1]
+
+            self.place[0] += dir_x / closest_dist_sqrt * self.speed
+            self.place[1] += dir_y / closest_dist_sqrt * self.speed
 
         return closest_sheep, False
 
     def get_place(self):
         return f"Wolf is at {round(self.place[0], 3)}, {round(self.place[1], 3)}"
-    #def __str__(self):
-    #    pass
-    #str(wolf)

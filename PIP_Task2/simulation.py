@@ -1,6 +1,5 @@
 import csv
 import json
-from time import sleep
 
 from sheep import Sheep
 from wolf import Wolf
@@ -37,13 +36,6 @@ def save_to_csv(data_list):
 
 
 def num_sheeps_alive(sheeps):
-    '''
-    sum_of_alive_sheeps = 0
-    for i in range(len(sheeps)):
-        if sheeps[i] is not None:
-            sum_of_alive_sheeps += 1
-    return sum_of_alive_sheeps
-    '''
     return sum(1 for sheep in sheeps if sheep is not None)
 
 
@@ -85,8 +77,6 @@ def run_simulation():
         else:
             print(f"The Wolf is chasing sheep nr: {int(ch_sheep)} ")
         print("")
-
-        #sleep(5)
 
     save_to_json(json_data)
     save_to_csv(csv_data)
